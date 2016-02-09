@@ -3,6 +3,9 @@
 /* Lab 3: getbits        */
 /*************************/
 
+#define TRUE 1
+#define FALSE 0
+
 #include <stdio.h>
 
 unsigned long readUL(void);
@@ -28,9 +31,9 @@ unsigned long readUL(void)
 {
   unsigned long number = 0;
   char c;
-  int stopFlag = 0;
+  int stopFlag = FALSE;
   
-  while (stopFlag != 1)
+  while (stopFlag != TRUE)
     {
       c = getchar();
       if ( c >= '0' && c <= '9')
@@ -40,7 +43,7 @@ unsigned long readUL(void)
         }
 
       /* Something other than a digit read, so stop reading input */
-      else stopFlag = 1;
+      else stopFlag = TRUE;
     }
   return number;
 }
