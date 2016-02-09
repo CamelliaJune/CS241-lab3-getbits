@@ -5,40 +5,42 @@
 
 #include <stdio.h>
 
+unsigned long readUL(void);
+
 int main (void)
 {
-  int c; /* character from standard input */
-  int x; /* from getbits function, K&R 2.9 */
+  unsigned long x; /* from getbits function, K&R 2.9 */
   int p; /* also K&R 2.9 */
   int n; /* ditto */
 
-  /* Read in chars until EOF */
-
-  /* Read in x char by char until ';' encountered */
-  x = getchar() - '0';
-  while ( ( c =getchar() ) != ';' )
-    {
-      x *= 10;
-      x += c - '0';
-    }
-
-  /* read in p char by char until ';' encountered */
-  p = getchar() - '0';
-  while ( ( c = getchar() ) != ';' )
-    {
-      p *= 10;
-      p += c - '0';
-    }
-
-  /* read in n char by char until '\n' encountered */
-  n = getchar() - '0';
-  while ( ( c = getchar() ) != '\n' )
-    {
-      n *= 10;
-      n += c - '0';
-    }
+  x = readUL();
+  p = (int) readUL();
+  n = (int) readUL();
   
-  printf("getbits(x=%d, p=%d, n=%d)\n", x, p, n);
+  printf("getbits(x=%lu, p=%d, n=%d) = ???\n", x, p, n);
 
   return 0;
+}
+
+unsigned long readUL(void)
+/* Function to read in characters and turn continuous strings of */
+/* digits into unsigned long */
+{
+  unsigned long number = 0;
+  char c;
+  int stopFlag = 0;
+  
+  while (stopFlag != 1)
+    {
+      c = getchar();
+      if ( c >= '0' && c <= '9')
+        {
+          number *= 10;
+          number += c - '0';
+        }
+
+      /* Something other than a digit read, so stop reading input */
+      else stopFlag = 1;
+    }
+  return number;
 }
