@@ -1,0 +1,19 @@
+/*************************/
+/* Matt Hunter CS241.001 */
+/* Lab 3: getbits        */
+/*************************/
+
+#include <stdio.h>
+
+int main (void)
+{
+  int c;
+
+  /* Read in chars until EOF, echo to stdio */
+  while ( ( c = getchar() ) != EOF )
+    {
+      printf("%c", c);
+    }
+
+  return 0;
+}
